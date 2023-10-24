@@ -1,0 +1,7 @@
+form.post {
+    display: flex;
+    flex-direction: column;
+    flex-basis: auto;
+    align-items: center;
+
+}

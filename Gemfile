@@ -70,3 +70,10 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+# web scrapper
+gem 'nokogiri'
+
+# handles http requests specifically login
+gem 'httparty'
+gem "devise", "~> 4.9"
