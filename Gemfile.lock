@@ -82,7 +82,14 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    capybara-mechanize (1.13.0)
+      capybara (>= 3.0.0, < 4)
+      mechanize (~> 2.8.5)
+    chronic (0.10.2)
+    cliver (0.3.2)
+    coderay (1.1.3)
     concurrent-ruby (1.2.2)
+    connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.3)
     debug (1.8.0)
@@ -94,12 +101,14 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    httparty (0.21.0)
-      mini_mime (>= 1.0.0)
-      multi_xml (>= 0.5.2)
+    headless (2.3.1)
+    http-cookie (1.0.5)
+      domain_name (~> 0.5)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.1)
@@ -112,6 +121,21 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    kimurai (1.4.0)
+      activesupport
+      capybara (>= 2.15, < 4.0)
+      capybara-mechanize
+      cliver
+      headless
+      murmurhash3
+      nokogiri
+      pmap
+      poltergeist
+      pry
+      rbcat (~> 0.2)
+      selenium-webdriver
+      thor
+      whenever
     loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -122,11 +146,28 @@ GEM
       net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
+    mechanize (2.8.5)
+      addressable (~> 2.8)
+      domain_name (~> 0.5, >= 0.5.20190701)
+      http-cookie (~> 1.0, >= 1.0.3)
+      mime-types (~> 3.0)
+      net-http-digest_auth (~> 1.4, >= 1.4.1)
+      net-http-persistent (>= 2.5.2, < 5.0.dev)
+      nokogiri (~> 1.11, >= 1.11.2)
+      rubyntlm (~> 0.6, >= 0.6.3)
+      webrick (~> 1.7)
+      webrobots (~> 0.1.2)
     method_source (1.0.0)
+    mime-types (3.5.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2023.1003)
     mini_mime (1.1.5)
     minitest (5.20.0)
     msgpack (1.7.2)
-    multi_xml (0.6.0)
+    murmurhash3 (0.1.7)
+    net-http-digest_auth (1.4.1)
+    net-http-persistent (4.0.2)
+      connection_pool (~> 2.2)
     net-imap (0.4.2)
       date
       net-protocol
@@ -141,6 +182,14 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.5.4)
+    pmap (1.1.1)
+    poltergeist (1.18.1)
+      capybara (>= 2.1, < 4)
+      cliver (~> 0.3.1)
+      websocket-driver (>= 0.2.0)
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     psych (5.1.1.1)
       stringio
     public_suffix (5.0.3)
@@ -179,6 +228,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    rbcat (0.2.2)
     rdoc (6.5.0)
       psych (>= 4.0.0)
     regexp_parser (2.8.2)
@@ -188,6 +238,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    rubyntlm (0.6.3)
     rubyzip (2.3.2)
     selenium-webdriver (4.14.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -211,6 +262,9 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.8.2)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -218,10 +272,14 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webrick (1.8.1)
+    webrobots (0.1.2)
     websocket (1.2.10)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    whenever (1.0.0)
+      chronic (>= 0.6.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.12)
@@ -234,10 +292,9 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
-  httparty
   importmap-rails
   jbuilder
-  nokogiri
+  kimurai
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8)

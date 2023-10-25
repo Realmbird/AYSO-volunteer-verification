@@ -71,9 +71,7 @@ group :test do
 
 end
 
-# web scrapper
-gem 'nokogiri'
-
-# handles http requests specifically login
-gem 'httparty'
 gem "devise", "~> 4.9"
+
+# new webscrapper
+gem 'kimurai'
