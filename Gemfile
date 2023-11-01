@@ -74,4 +74,7 @@ end
 gem "devise", "~> 4.9"
 
 # new webscrapper
-gem 'kimurai'
+
+
+gem 'selenium-webdriver'
+gem 'json'
