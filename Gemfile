@@ -78,3 +78,6 @@ gem "devise", "~> 4.9"
 
 gem 'selenium-webdriver'
 gem 'json'
+gem 'csv'
+
+gem 'activerecord-import'
