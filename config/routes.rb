@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     # collection is so that it can be /users/scrape shallow nesting
     match '/scrape', to: 'users#scrape', via: :post, on: :collection
   end
+  resources :players
   get 'selenium_test', to: 'scrappers#sports_connect_enrollment_details'
 
   root "users#index"

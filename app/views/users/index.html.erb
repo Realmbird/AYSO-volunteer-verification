@@ -1,20 +1,44 @@
 Currently For Demonstration Purposes as I do not have access to the data
 <%= stylesheet_link_tag 'form_post.css' %>
-<%= form_with url: "/search", method: :get, html: {class: 'post' }  do |form| %>
-    <div id = "date" class = "field">
-        <%= form.label :start, "Date: " %>
-        <%= form.date_select :start, include_blank: true, :order => [:month, :day, :year]%>
-    </div>
-    <div id = "coach"  class = "field">
-        
-    </div>
-    <%= form.submit "Search" %>
-<% end %>
 
-<% @players.each do |player| %>
-    <%= player.player_first_name%> 
-    <%= player.player_last_name %>
-    <br/>
+<div>
+  <%= form_tag users_path, method: :get do %>
+    <%= label_tag :search_term, 'Search Players by Name:' %>
+    <%= text_field_tag :search_term, params[:search_term] %><br>
 
-<% end %>
+    <%= label_tag :program_name, 'Program:' %>
+    <%= text_field_tag :program_name, params[:program_name] %><br>
+
+    <%= label_tag :division_name, 'Division:' %>
+    <%= text_field_tag :division_name, params[:division_name] %><br>
+
+    <%= label_tag :team_name, 'Team:' %>
+    <%= text_field_tag :team_name, params[:team_name] %><br>
+
+    <%= label_tag :order_payment_status, 'Payment Status:' %>
+    <%= text_field_tag :order_payment_status, params[:order_payment_status] %><br>
+
+    <%= label_tag :postal_code, 'Postal Code:' %>
+    <%= text_field_tag :postal_code, params[:postal_code] %><br>
+
+    <%= label_tag :city, 'City:' %>
+    <%= text_field_tag :city, params[:city] %><br>
+
+    <%= label_tag :state, 'State:' %>
+    <%= text_field_tag :state, params[:state] %><br>
+
+    <%= submit_tag 'Search' %>
+  <% end %>
+</div>
+
 <%= link_to 'Scrape', selenium_test_path %>
+
+<div>
+  <h2>Players</h2>
+  <ul>
+    <h5>Firstname, Lastname, Program, Division, Team</h5>
+    <% @players.each do |player| %>
+      <li><%= link_to "#{player.player_first_name} #{player.player_last_name} - #{player.program_name} - #{player.division_name} - #{player.team_name}", player_path(player) %></li>
+    <% end %>
+  </ul>
+</div>

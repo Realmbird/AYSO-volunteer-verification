@@ -1,0 +1,159 @@
+<%# app/views/players/edit.html.erb %>
+
+<h2>Edit Player</h2>
+
+<%= form_for @player do |f| %>
+  <!-- Program Name -->
+  <div>
+    <%= f.label :program_name %>
+    <%= f.text_field :program_name %>
+  </div>
+
+  <!-- Division Name -->
+  <div>
+    <%= f.label :division_name %>
+    <%= f.text_field :division_name %>
+  </div>
+
+  <!-- Account First Name -->
+  <div>
+    <%= f.label :account_first_name %>
+    <%= f.text_field :account_first_name %>
+  </div>
+
+  <!-- Account Last Name -->
+  <div>
+    <%= f.label :account_last_name %>
+    <%= f.text_field :account_last_name %>
+  </div>
+
+  <!-- Player First Name -->
+  <div>
+    <%= f.label :player_first_name %>
+    <%= f.text_field :player_first_name %>
+  </div>
+
+  <!-- Player Last Name -->
+  <div>
+    <%= f.label :player_last_name %>
+    <%= f.text_field :player_last_name %>
+  </div>
+
+  <!-- Player Gender -->
+  <div>
+    <%= f.label :player_gender %>
+    <%= f.select :player_gender, ['Male', 'Female', 'Other', 'Prefer not to say'] %>
+  </div>
+
+  <!-- Player Birth Date -->
+  <div>
+    <%= f.label :player_birth_date %>
+    <%= f.date_field :player_birth_date %>
+  </div>
+
+  <!-- Street Address -->
+  <div>
+    <%= f.label :street_address %>
+    <%= f.text_field :street_address %>
+  </div>
+
+  <!-- Unit -->
+  <div>
+    <%= f.label :unit %>
+    <%= f.text_field :unit %>
+  </div>
+
+  <!-- City -->
+  <div>
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+  </div>
+
+  <!-- State -->
+  <div>
+    <%= f.label :state %>
+    <%= f.text_field :state %>
+  </div>
+
+  <!-- Postal Code -->
+  <div>
+    <%= f.label :postal_code %>
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <!-- User Email -->
+  <div>
+    <%= f.label :user_email %>
+    <%= f.text_field :user_email %>
+  </div>
+
+  <!-- Telephone -->
+  <div>
+    <%= f.label :telephone %>
+    <%= f.text_field :telephone %>
+  </div>
+
+  <!-- Cellphone -->
+  <div>
+    <%= f.label :cellphone %>
+    <%= f.text_field :cellphone %>
+  </div>
+
+  <!-- Other Phone -->
+  <div>
+    <%= f.label :other_phone %>
+    <%= f.text_field :other_phone %>
+  </div>
+
+  <!-- Team Name -->
+  <div>
+    <%= f.label :team_name %>
+    <%= f.text_field :team_name %>
+  </div>
+
+  <!-- Order Date -->
+  <div>
+    <%= f.label :order_date %>
+    <%= f.datetime_select :order_date %>
+  </div>
+
+  <!-- Order No -->
+  <div>
+    <%= f.label :order_no %>
+    <%= f.number_field :order_no %>
+  </div>
+
+  <!-- Order Detail Description -->
+  <div>
+    <%= f.label :order_detail_description %>
+    <%= f.text_area :order_detail_description %>
+  </div>
+
+  <!-- Order Item Amount -->
+  <div>
+    <%= f.label :orderitem_amount %>
+    <%= f.number_field :orderitem_amount, step: 0.01 %>
+  </div>
+
+  <!-- Order Item Amount Paid -->
+  <div>
+    <%= f.label :orderitem_amount_paid %>
+    <%= f.number_field :orderitem_amount_paid, step: 0.01 %>
+  </div>
+
+  <!-- Order Item Balance -->
+  <div>
+    <%= f.label :orderitem_balance %>
+    <%= f.number_field :orderitem_balance, step: 0.01 %>
+  </div>
+
+  <!-- Order Payment Status -->
+  <div>
+    <%= f.label :order_payment_status %>
+    <%= f.text_field :order_payment_status %>
+  </div>
+
+  <div>
+    <%= f.submit 'Update Player' %>
+  </div>
+<% end %>

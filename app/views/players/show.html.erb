@@ -1,0 +1,141 @@
+<%# app/views/players/show.html.erb %>
+
+<h1>Player Details</h1>
+
+<div>
+  <strong>Program Name:</strong>
+  <%= @player.program_name %>
+</div>
+
+<div>
+  <strong>Division Name:</strong>
+  <%= @player.division_name %>
+</div>
+
+<div>
+  <strong>Account First Name:</strong>
+  <%= @player.account_first_name %>
+</div>
+
+<div>
+  <strong>Account Last Name:</strong>
+  <%= @player.account_last_name %>
+</div>
+
+<div>
+  <strong>Player First Name:</strong>
+  <%= @player.player_first_name %>
+</div>
+
+<div>
+  <strong>Player Last Name:</strong>
+  <%= @player.player_last_name %>
+</div>
+
+<div>
+  <strong>Player Gender:</strong>
+  <%= @player.player_gender %>
+</div>
+
+<div>
+  <strong>Player Birth Date:</strong>
+  <%= @player.player_birth_date %>
+</div>
+
+<div>
+  <strong>Street Address:</strong>
+  <%= @player.street_address %>
+</div>
+
+<div>
+  <strong>Unit:</strong>
+  <%= @player.unit %>
+</div>
+
+<div>
+  <strong>City:</strong>
+  <%= @player.city %>
+</div>
+
+<div>
+  <strong>State:</strong>
+  <%= @player.state %>
+</div>
+
+<div>
+  <strong>Postal Code:</strong>
+  <%= @player.postal_code %>
+</div>
+
+<div>
+  <strong>User Email:</strong>
+  <%= @player.user_email %>
+</div>
+
+<div>
+  <strong>Telephone:</strong>
+  <%= @player.telephone %>
+</div>
+
+<div>
+  <strong>Cellphone:</strong>
+  <%= @player.cellphone %>
+</div>
+
+<div>
+  <strong>Other Phone:</strong>
+  <%= @player.other_phone %>
+</div>
+
+<div>
+  <strong>Team Name:</strong>
+  <%= @player.team_name %>
+</div>
+
+<div>
+  <strong>Order Date:</strong>
+  <%= @player.order_date %>
+</div>
+
+<div>
+  <strong>Order No:</strong>
+  <%= @player.order_no %>
+</div>
+
+<div>
+  <strong>Order Detail Description:</strong>
+  <%= @player.order_detail_description %>
+</div>
+
+<div>
+  <strong>Order Item Amount:</strong>
+  <%= @player.orderitem_amount %>
+</div>
+
+<div>
+  <strong>Order Item Amount Paid:</strong>
+  <%= @player.orderitem_amount_paid %>
+</div>
+
+<div>
+  <strong>Order Item Balance:</strong>
+  <%= @player.orderitem_balance %>
+</div>
+
+<div>
+  <strong>Order Payment Status:</strong>
+  <%= @player.order_payment_status %>
+</div>
+
+<div>
+  <strong>Created At:</strong>
+  <%= @player.created_at %>
+</div>
+
+<div>
+  <strong>Updated At:</strong>
+  <%= @player.updated_at %>
+</div>
+
+<%= link_to 'Edit', edit_player_path(@player) %> |
+<%= link_to 'Back', users_path %>
