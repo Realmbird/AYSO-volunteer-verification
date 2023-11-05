@@ -75,6 +75,7 @@ gem "devise", "~> 4.9"
 
 # new webscrapper
 
+gem 'figaro'
 
 gem 'selenium-webdriver'
 gem 'json'
