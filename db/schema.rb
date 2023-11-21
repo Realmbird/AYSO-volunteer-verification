@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_01_234322) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_21_005728) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,25 +56,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_234322) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "vehicles", force: :cascade do |t|
-    t.string "title"
-    t.string "stock_type"
-    t.string "exterior_color"
-    t.string "interior_color"
-    t.string "transmission"
-    t.string "drivetrain"
-    t.integer "price"
-    t.integer "miles"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "vehicles_spiders", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "volunteers", force: :cascade do |t|
+    t.string "program_name"
+    t.string "division_name"
+    t.string "team_name"
+    t.string "volunteer_role"
+    t.string "volunteer_first_name"
+    t.string "volunteer_last_name"
+    t.string "volunteer_street_address"
+    t.string "volunteer_address_unit"
+    t.string "volunteer_city"
+    t.string "volunteer_state"
+    t.string "volunteer_postal_code"
+    t.string "volunteer_email_address"
+    t.string "volunteer_telephone"
+    t.string "volunteer_cellphone"
+    t.string "volunteer_other_phone"
+    t.integer "association_volunteer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

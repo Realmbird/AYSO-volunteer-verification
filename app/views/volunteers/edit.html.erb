@@ -1,0 +1,86 @@
+<!-- app/views/volunteers/edit.html.erb -->
+<h1>Edit Volunteer</h1>
+
+<%= form_with(model: @volunteer, local: true) do |form| %>
+  <div>
+    <%= form.label :program_name %>
+    <%= form.text_field :program_name %>
+  </div>
+
+  <div>
+    <%= form.label :division_name %>
+    <%= form.text_field :division_name %>
+  </div>
+
+  <div>
+    <%= form.label :team_name %>
+    <%= form.text_field :team_name %>
+  </div>
+
+  <div>
+    <%= form.label :volunteer_role %>
+    <%= form.text_field :volunteer_role %>
+  </div>
+
+  <div>
+    <%= form.label :volunteer_first_name %>
+    <%= form.text_field :volunteer_first_name %>
+  </div>
+
+  <div>
+    <%= form.label :volunteer_last_name %>
+    <%= form.text_field :volunteer_last_name %>
+  </div>
+
+  <div>
+    <%= form.label :volunteer_street_address %>
+    <%= form.text_field :volunteer_street_address %>
+  </div>
+
+  <div>
+    <%= form.label :volunteer_address_unit %>
+    <%= form.text_field :volunteer_address_unit %>
+  </div>
+
+  <div>
+    <%= form.label :volunteer_city %>
+    <%= form.text_field :volunteer_city %>
+  </div>
+
+  <div>
+    <%= form.label :volunteer_state %>
+    <%= form.text_field :volunteer_state %>
+  </div>
+
+  <div>
+    <%= form.label :volunteer_postal_code %>
+    <%= form.text_field :volunteer_postal_code %>
+  </div>
+
+  <div>
+    <%= form.label :volunteer_email_address %>
+    <%= form.text_field :volunteer_email_address %>
+  </div>
+
+  <div>
+    <%= form.label :volunteer_telephone %>
+    <%= form.text_field :volunteer_telephone %>
+  </div>
+
+  <div>
+    <%= form.label :volunteer_cellphone %>
+    <%= form.text_field :volunteer_cellphone %>
+  </div>
+
+  <div>
+    <%= form.label :volunteer_other_phone %>
+    <%= form.text_field :volunteer_other_phone %>
+  </div>
+  <div>
+    <%= form.label :association_volunteer_id %>
+    <%= form.text_field :association_volunteer_id %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', volunteer_path(@volunteer) %> |
+<%= link_to 'Back to List', volunteers_path %>

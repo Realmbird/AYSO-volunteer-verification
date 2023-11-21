@@ -1,0 +1,37 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  program_name: MyString
+  division_name: MyString
+  team_name: MyString
+  volunteer_role: MyString
+  volunteer_first_name: MyString
+  volunteer_last_name: MyString
+  volunteer_street_address: MyString
+  volunteer_address_unit: MyString
+  volunteer_city: MyString
+  volunteer_state: MyString
+  volunteer_postal_code: MyString
+  volunteer_email_address: MyString
+  volunteer_telephone: MyString
+  volunteer_cellphone: MyString
+  volunteer_other_phone: MyString
+  association_volunteer_id: 1
+
+two:
+  program_name: MyString
+  division_name: MyString
+  team_name: MyString
+  volunteer_role: MyString
+  volunteer_first_name: MyString
+  volunteer_last_name: MyString
+  volunteer_street_address: MyString
+  volunteer_address_unit: MyString
+  volunteer_city: MyString
+  volunteer_state: MyString
+  volunteer_postal_code: MyString
+  volunteer_email_address: MyString
+  volunteer_telephone: MyString
+  volunteer_cellphone: MyString
+  volunteer_other_phone: MyString
+  association_volunteer_id: 1

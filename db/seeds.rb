@@ -7,6 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 User.destroy_all
 Player.destroy_all
+Volunteer.destroy_all
 
 password = "godofThunder"
 10.times do |i|

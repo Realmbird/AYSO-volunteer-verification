@@ -1,0 +1,85 @@
+<!-- app/views/volunteers/show.html.erb -->
+<h1>Volunteer Details</h1>
+
+<p>
+  <strong>Program Name:</strong>
+  <%= @volunteer.program_name %>
+</p>
+
+<p>
+  <strong>Division Name:</strong>
+  <%= @volunteer.division_name %>
+</p>
+
+<p>
+  <strong>Team Name:</strong>
+  <%= @volunteer.team_name %>
+</p>
+
+<p>
+  <strong>Volunteer Role:</strong>
+  <%= @volunteer.volunteer_role %>
+</p>
+
+<p>
+  <strong>First Name:</strong>
+  <%= @volunteer.volunteer_first_name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @volunteer.volunteer_last_name %>
+</p>
+
+<p>
+  <strong>Street Address:</strong>
+  <%= @volunteer.volunteer_street_address %>
+</p>
+
+<p>
+  <strong>Address Unit:</strong>
+  <%= @volunteer.volunteer_address_unit %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @volunteer.volunteer_city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @volunteer.volunteer_state %>
+</p>
+
+<p>
+  <strong>Postal Code:</strong>
+  <%= @volunteer.volunteer_postal_code %>
+</p>
+
+<p>
+  <strong>Email Address:</strong>
+  <%= @volunteer.volunteer_email_address %>
+</p>
+
+<p>
+  <strong>Telephone:</strong>
+  <%= @volunteer.volunteer_telephone %>
+</p>
+
+<p>
+  <strong>Cellphone:</strong>
+  <%= @volunteer.volunteer_cellphone %>
+</p>
+
+<p>
+  <strong>Other Phone:</strong>
+  <%= @volunteer.volunteer_other_phone %>
+</p>
+
+<p>
+  <strong>Association Volunteer ID:</strong>
+  <%= @volunteer.association_volunteer_id %>
+</p>
+
+<%= link_to 'Edit', edit_volunteer_path(@volunteer) %> |
+<%= link_to 'Back to List', volunteers_path %>
