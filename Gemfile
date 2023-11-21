@@ -82,3 +82,5 @@ gem 'json'
 gem 'csv'
 
 gem 'activerecord-import'
+
+gem 'uri'

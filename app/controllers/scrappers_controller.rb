@@ -83,7 +83,7 @@ class ScrappersController < ApplicationController
         if File.exist?(csv_file_path)
             File.delete(csv_file_path)
         end
-        flash[:notice] =  'Selenium test executed successfully.'
+        flash[:notice] =  'Volunteer Data Successfully Scrapped.'
         redirect_to volunteers_path
     end
 
@@ -114,9 +114,8 @@ class ScrappersController < ApplicationController
     end
 
     def compliance_login
+        @driver.get('https://eayso.sportsaffinity.com/Foundation/Login.aspx?sessionguid=')
         @driver.manage.timeouts.implicit_wait = 500
-        element = @driver.find_element(:id, 'loginControl_btnSSOLogin')
-        @driver.action.move_to_element(element).perform
         @driver.find_element(:id, 'loginControl_btnSSOLogin').click
         @driver.find_element(:name, 'email').click
         @driver.find_element(:name, 'email').send_keys(ENV["sports_username"])
@@ -126,8 +125,38 @@ class ScrappersController < ApplicationController
         @driver.find_element(:name, 'password').send_keys(:enter)
     end
     def compliance_details
+        #setups webscrapper driver
         setup
+
+        #logins to sports affinity
+        compliance_login
+
+        compliance_additional_reports
+
+        #@driver.quit
+
+        #flash[:notice] =  'Selenium test executed successfully.'
+        #redirect_to volunteers_path
     end
+
+    def compliance_additional_reports
+        # Wait for the page to load and for the URL to contain 'sessionguid'
+        wait = Selenium::WebDriver::Wait.new(timeout: 10)
+        wait.until { @driver.current_url.include?('sessionguid') }
+
+        # Parse the current URL to extract the 'sessionguid'
+        current_url = @driver.current_url
+        uri = URI.parse(current_url)
+        params = URI.decode_www_form(uri.query).to_h
+        sessionguid = params['sessionguid']
+         # Construct the URL for 'Additional Reports'
+
+        additional_reports_url = "https://eayso.sportsaffinity.com/reg/reportsstats/newreports.asp?sessionguid=#{sessionguid}&type=B"
+
+        # Navigate to the 'Additional Reports' page
+        @driver.get additional_reports_url
+    end
+
     def universal_scrape
         sports_connect_enrollment_details
         compliance_details

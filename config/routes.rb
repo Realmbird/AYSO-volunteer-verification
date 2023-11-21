@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   resources :players, :volunteers
 
   get 'ayso', to: 'scrappers#sports_connect_enrollment_details'
-  #get '', to: 'scrappers#' Admin Credentials
-  #get '', to: 'scrappers#' Coach and Refere Lisence
+ #get '', to: 'scrappers#' #Admin Credentials
+ #get '', to: 'scrappers#' #Coach and Refere Lisence
+  get 'compliance', to: 'scrappers#compliance_details' #Credentials and Lisences
   get 'update', to: "scrappers#csv_database_volunteer"
   get 'selenium_test', to: 'scrappers#universal_scrape'
 
