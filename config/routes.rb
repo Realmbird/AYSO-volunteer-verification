@@ -15,7 +15,7 @@ Rails.application.routes.draw do
  #get '', to: 'scrappers#' #Admin Credentials
  #get '', to: 'scrappers#' #Coach and Refere Lisence
   get 'compliance', to: 'scrappers#compliance_details' #Credentials and Lisences
-  get 'update', to: "scrappers#csv_database_volunteer"
+  get 'update', to: "scrappers#update"
   get 'selenium_test', to: 'scrappers#universal_scrape'
 
   root "users#index"

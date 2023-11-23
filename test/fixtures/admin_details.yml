@@ -1,0 +1,69 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cert_name: MyString
+  area: MyString
+  region: MyString
+  region_id: MyString
+  admin_id: MyString
+  admin_alt_id: MyString
+  reg_date: 2023-11-23 02:00:36
+  first_name: MyString
+  last_name: MyString
+  dob: 2023-11-23
+  gender: MyString
+  email: MyString
+  id_verified: false
+  id_verified_by: MyString
+  id_verified_date: 2023-11-23 02:00:36
+  risk_submit_date: 2023-11-23 02:00:36
+  risk_status: MyString
+  risk_expire_date: 2023-11-23
+  printed: false
+  photo_uploaded: 2023-11-23 02:00:36
+  coach_license_level: MyString
+  coach_license_num: MyString
+  coach_license_obtained_date: 2023-11-23
+  referee_grade: MyString
+  referee_grade_obtained_date: 2023-11-23
+  referee_expired_date: 2023-11-23
+  rostered: false
+  upload_date: 2023-11-23 02:00:36
+  verified: false
+  verified_by: MyString
+  verified_date: 2023-11-23 02:00:36
+  expired_date: 2023-11-23
+
+two:
+  cert_name: MyString
+  area: MyString
+  region: MyString
+  region_id: MyString
+  admin_id: MyString
+  admin_alt_id: MyString
+  reg_date: 2023-11-23 02:00:36
+  first_name: MyString
+  last_name: MyString
+  dob: 2023-11-23
+  gender: MyString
+  email: MyString
+  id_verified: false
+  id_verified_by: MyString
+  id_verified_date: 2023-11-23 02:00:36
+  risk_submit_date: 2023-11-23 02:00:36
+  risk_status: MyString
+  risk_expire_date: 2023-11-23
+  printed: false
+  photo_uploaded: 2023-11-23 02:00:36
+  coach_license_level: MyString
+  coach_license_num: MyString
+  coach_license_obtained_date: 2023-11-23
+  referee_grade: MyString
+  referee_grade_obtained_date: 2023-11-23
+  referee_expired_date: 2023-11-23
+  rostered: false
+  upload_date: 2023-11-23 02:00:36
+  verified: false
+  verified_by: MyString
+  verified_date: 2023-11-23 02:00:36
+  expired_date: 2023-11-23

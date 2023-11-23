@@ -10,9 +10,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_21_005728) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_23_100036) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admin_details", force: :cascade do |t|
+    t.string "cert_name"
+    t.string "area"
+    t.string "region"
+    t.string "region_id"
+    t.string "admin_id"
+    t.string "admin_alt_id"
+    t.datetime "reg_date"
+    t.string "first_name"
+    t.string "last_name"
+    t.date "dob"
+    t.string "gender"
+    t.string "email"
+    t.boolean "id_verified"
+    t.string "id_verified_by"
+    t.datetime "id_verified_date"
+    t.datetime "risk_submit_date"
+    t.string "risk_status"
+    t.date "risk_expire_date"
+    t.boolean "printed"
+    t.datetime "photo_uploaded"
+    t.string "coach_license_level"
+    t.string "coach_license_num"
+    t.date "coach_license_obtained_date"
+    t.string "referee_grade"
+    t.date "referee_grade_obtained_date"
+    t.date "referee_expired_date"
+    t.boolean "rostered"
+    t.datetime "upload_date"
+    t.boolean "verified"
+    t.string "verified_by"
+    t.datetime "verified_date"
+    t.date "expired_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "license_details", force: :cascade do |t|
+    t.string "section"
+    t.string "area"
+    t.string "region"
+    t.integer "region_id"
+    t.string "admin_id"
+    t.integer "admin_alt_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.date "dob"
+    t.string "gender"
+    t.string "email"
+    t.string "coaching_license_referee_grade"
+    t.date "license_grade_obtained"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "players", force: :cascade do |t|
     t.string "program_name"
@@ -54,6 +109,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_21_005728) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "volunteer_details", force: :cascade do |t|
+    t.string "section"
+    t.string "area"
+    t.string "region"
+    t.integer "region_id"
+    t.string "admin_id"
+    t.integer "admin_alt_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.date "dob"
+    t.string "gender"
+    t.string "email"
+    t.string "coaching_license_referee_grade"
+    t.date "license_grade_obtained"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "volunteers", force: :cascade do |t|

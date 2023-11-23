@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  section: MyString
+  area: MyString
+  region: MyString
+  region_id: 1
+  admin_id: MyString
+  admin_alt_id: 1
+  first_name: MyString
+  last_name: MyString
+  dob: 2023-11-23
+  gender: MyString
+  email: MyString
+  coaching_license_referee_grade: MyString
+  license_grade_obtained: 2023-11-23
+
+two:
+  section: MyString
+  area: MyString
+  region: MyString
+  region_id: 1
+  admin_id: MyString
+  admin_alt_id: 1
+  first_name: MyString
+  last_name: MyString
+  dob: 2023-11-23
+  gender: MyString
+  email: MyString
+  coaching_license_referee_grade: MyString
+  license_grade_obtained: 2023-11-23

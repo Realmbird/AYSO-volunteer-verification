@@ -84,3 +84,6 @@ gem 'csv'
 gem 'activerecord-import'
 
 gem 'uri'
+
+gem 'roo'
+gem 'roo-xls'
