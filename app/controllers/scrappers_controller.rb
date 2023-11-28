@@ -84,13 +84,17 @@ class ScrappersController < ApplicationController
         LicenseDetail.destroy_all
         license_parse_and_store_csv(csv_file_path1)
 
+        if File.exist?(csv_file_path1)
+            File.delete(csv_file_path1)
+        end
+        
         csv_file_path2 = Rails.root.join('tmp', 'scraper_downloads', 'AdminCredentialsStatusDynamic.csv')
         AdminDetail.destroy_all
         admin_parse_and_store_csv(csv_file_path2)
         # Check if the file exists before attempting to delete it
-        #if File.exist?(xlsx_file_path1)
-        #    File.delete(xlsx_file_path1)
-        #end
+        if File.exist?(csv_file_path2)
+            File.delete(csv_file_path2)
+        end
         flash[:notice] =  'Compliance Data Successfully Scrapped.'
         redirect_to volunteers_path
 
