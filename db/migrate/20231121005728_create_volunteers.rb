@@ -21,4 +21,8 @@ class CreateVolunteers < ActiveRecord::Migration[7.0]
       t.timestamps
     end
   end
+  # sign up for role
+  # risk status green if passed 
+  # risk status blue
+
 end

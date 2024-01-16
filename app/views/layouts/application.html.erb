@@ -18,6 +18,7 @@
     <% end %>
     <div id="user_nav">
       <% if user_signed_in? %>
+        <%= image_tag("menu.png") %>
         <%= link_to "Database", users_path %> |
         <%= link_to "View Profile", user_path(current_user)%> |
         <%= link_to "Find Volunteers", volunteers_path %>
@@ -28,7 +29,8 @@
         <%= link_to "Sign in", new_user_session_path %>
       <% end %>
     </div>
-
-    <%= yield %>
+    <div class = "body">
+      <%= yield %>
+    </div>
   </body>
 </html>

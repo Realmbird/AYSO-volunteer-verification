@@ -1,0 +1,17 @@
+#user_nav {
+    background-color: #0D194F;
+    color: #D2E9FF !important;
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#user_nav a {
+    text-decoration: none;
+    color: #D2E9FF !important;
+}
+#user_nav img{
+    position: relative;
+    height: 100%;
+}
