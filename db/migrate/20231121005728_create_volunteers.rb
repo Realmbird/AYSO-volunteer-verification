@@ -16,7 +16,7 @@ class CreateVolunteers < ActiveRecord::Migration[7.0]
       t.string :volunteer_telephone
       t.string :volunteer_cellphone
       t.string :volunteer_other_phone
-      t.integer :association_volunteer_id
+      t.string :association_volunteer_id
 
       t.timestamps
     end

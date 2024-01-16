@@ -145,7 +145,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_23_100036) do
     t.string "volunteer_telephone"
     t.string "volunteer_cellphone"
     t.string "volunteer_other_phone"
-    t.integer "association_volunteer_id"
+    t.string "association_volunteer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
