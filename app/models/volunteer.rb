@@ -68,12 +68,12 @@ class Volunteer < ApplicationRecord
      #checked no expire date
      def is_10u_coach_compliant?
         has_required_admin_certs = universal_requirements
-        has_required_federal_certs = advanced_requirements
+        #   has_required_federal_certs = advanced_requirements recommended
       
         # Check for the required coaching license
         has_required_license = LicenseDetail.where(admin_id: association_volunteer_id, coaching_license_referee_grade: '10U Coach').exists?
       
-        has_required_admin_certs && has_required_license && has_required_federal_certs
+        has_required_admin_certs && has_required_license
      end
 
      #checked no expire date
@@ -162,7 +162,11 @@ class Volunteer < ApplicationRecord
         has_required_admin_certs && has_required_license && has_required_federal_certs
      end
 
-     # getting report 10u
+     def get_division_and_role(division_name)
+         
+     end
+
+   # getting report 10u
 
      def self.all_compliant_10u_coaches
       Volunteer.all.select { |v| v.is_10u_coach_compliant? }
