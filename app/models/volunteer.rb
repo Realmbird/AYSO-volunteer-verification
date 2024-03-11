@@ -4,7 +4,14 @@ class Volunteer < ApplicationRecord
     
     #debug only
     def get_certs
-        certfications = AdminDetail.where(admin_id: association_volunteer_id).pluck(:cert_name)
+        certfications = AdminDetail.where(admin_id: association_volunteer_id).select(:cert_name)
+    end
+    def get_special_cert
+      certifications = AdminDetail.where(admin_id: association_volunteer_id, verified: true, risk_status: 'Green').or(AdminDetail.where(admin_id: association_volunteer_id, verified: true, risk_status: 'Blue')).where('expired_date > ? OR expired_date IS NULL', Date.today).where('risk_expire_date > ? OR risk_expire_date IS NULL', Date.today).select(:cert_name)
+# For terminal
+##AdminDetail.where(verified: true,risk_status: 'Green').where('risk_expire_date > ?', Date.today).select(:cert_name).distinct
+## only safe sport has expired date
+##AdminDetail.where(verified: true,risk_status: 'Green').where('risk_expire_date > ?', Date.today).where('expired_date > ?', Date.today).pluck(:cert_name).distinct
     end
     def get_coach_grades
         coach_grades = LicenseDetail.where(admin_id: association_volunteer_id).pluck(:coaching_license_referee_grade)
@@ -13,14 +20,17 @@ class Volunteer < ApplicationRecord
     # volunteer requirements
     def universal_requirements
         required_admin_cert_names = ["AYSOs Safe Haven", "Concussion Awareness", "Sudden Cardiac Arrest"]
-        admin_cert_names = AdminDetail.where(admin_id: association_volunteer_id).pluck(:cert_name)
+        admin_cert_names = AdminDetail.where(admin_id: association_volunteer_id, verified: true, risk_status: 'Green').or(AdminDetail.where(admin_id: association_volunteer_id, verified: true, risk_status: 'Blue')).where('expired_date > ? OR expired_date IS NULL', Date.today).where('risk_expire_date > ? OR risk_expire_date IS NULL', Date.today).pluck(:cert_name)
         has_required_admin_certs = required_admin_cert_names.all? { |cert| admin_cert_names.include?(cert) }
     end
     def advanced_requirements
+        # Check green and blue
+        # Check Safe Sport Expiration
+        
         #Live Scan (state-required fingerprinting)
-        #SafeSport (federally-mandated course)
+        #SafeSport (federally-mandated course) 
         required_admin_cert_names = ["SafeSport", "CA Mandated Fingerprinting"]
-        admin_cert_names = AdminDetail.where(admin_id: association_volunteer_id).pluck(:cert_name)
+        admin_cert_names = AdminDetail.where(admin_id: association_volunteer_id, verified: true, risk_status: 'Green').or(AdminDetail.where(admin_id: association_volunteer_id, verified: true, risk_status: 'Blue')).where('expired_date > ? OR expired_date IS NULL', Date.today).where('risk_expire_date > ? OR risk_expire_date IS NULL', Date.today).pluck(:cert_name)
         has_required_admin_certs = required_admin_cert_names.all? { |cert| admin_cert_names.include?(cert) }
     end
 
@@ -150,6 +160,12 @@ class Volunteer < ApplicationRecord
         has_required_license = LicenseDetail.where(admin_id: association_volunteer_id, coaching_license_referee_grade: 'National Referee').exists?
       
         has_required_admin_certs && has_required_license && has_required_federal_certs
+     end
+
+     # getting report 10u
+
+     def self.all_compliant_10u_coaches
+      Volunteer.all.select { |v| v.is_10u_coach_compliant? }
      end
      
 
