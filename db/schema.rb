@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_23_100036) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_16_055613) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -148,6 +148,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_23_100036) do
     t.string "association_volunteer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["association_volunteer_id"], name: "index_volunteers_on_association_volunteer_id"
+  end
+
+  create_table "volunteers_admin_details", force: :cascade do |t|
+    t.bigint "volunteer_id"
+    t.bigint "admin_detail_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_detail_id"], name: "index_volunteers_admin_details_on_admin_detail_id"
+    t.index ["volunteer_id"], name: "index_volunteers_admin_details_on_volunteer_id"
+  end
+
+  create_table "volunteers_license_details", force: :cascade do |t|
+    t.bigint "volunteer_id"
+    t.bigint "license_detail_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["license_detail_id"], name: "index_volunteers_license_details_on_license_detail_id"
+    t.index ["volunteer_id"], name: "index_volunteers_license_details_on_volunteer_id"
   end
 
 end

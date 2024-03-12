@@ -2,12 +2,14 @@
 
 desc "Makes Volunteer Compliance data"
 task report: :environment do
-    # This could be run in a rails console or a rake task
-    compliant_coaches = Volunteer.all_compliant_10u_coaches
-    compliant_coaches_json = compliant_coaches.as_json
+  compliant_volunteers_by_division_and_role = Volunteer.all_compliant
 
-    File.open('compliant_10u_coaches.json', 'w') do |file|
-        file.write(compliant_coaches_json.to_json)
+  compliant_volunteers_by_division_and_role.each do |division_role, volunteers|
+    compliant_volunteers_json = volunteers.as_json
+    file_name = "compliant_#{division_role.downcase.gsub('/', '_').gsub(' ', '_')}.json"
+
+    File.open(file_name, 'w') do |file|
+      file.write(compliant_volunteers_json.to_json)
     end
-
+  end
 end
