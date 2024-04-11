@@ -2,6 +2,7 @@ class Volunteer < ApplicationRecord
     # changes primary key
     self.primary_key = 'association_volunteer_id'
     
+
     #debug only
     def get_certs
         certfications = AdminDetail.where(admin_id: association_volunteer_id).select(:cert_name)
@@ -180,17 +181,16 @@ class Volunteer < ApplicationRecord
         return nil
       end
     end
+    def get_division_code
+      match = division_name.match(/(\d{1,2})U(B|G)/)
+      match ? "#{match[1]}U#{match[2]}" : nil
+    end
 
     def get_role()
       # Cleans roles into Coach and Referee
-      role = volunteer_role
-      if (role.include?("Coach"))
-         return "Coach"
-      elsif (role.include?("Referee"))
-         return "Referee"
-      else
-         return nil
-      end
+      return 'Coach' if volunteer_role&.include?('Coach')
+      return 'Referee' if volunteer_role&.include?('Referee')
+      nil
    end
 
 
@@ -220,12 +220,60 @@ class Volunteer < ApplicationRecord
       division_num = get_division
       role = get_role
 
+      return false if division_num.nil? || role.nil?
+
       compliance_method = "is_#{division_num}u_#{role.downcase}_compliant?".to_sym
       if compliance_method
          return true
       else
          return false
       end
+   end
+
+   #formatting for form
+   def get_cert_status(cert_name)
+      # where(admin_id: association_volunteer_id, verified: true, risk_status: 'Green').or(AdminDetail.where(admin_id: association_volunteer_id, verified: true, risk_status: 'Blue')).where('expired_date > ? OR expired_date IS NULL', Date.today).where('risk_expire_date > ? OR risk_expire_date IS NULL', Date.today).pluck(:cert_name)
+
+      #  Checks if admin detail exists for certname and if not expired
+      AdminDetail.where(admin_id: association_volunteer_id, cert_name: cert_name, risk_status: 'Green').or(AdminDetail.where(admin_id: association_volunteer_id, verified: true,cert_name: cert_name, risk_status: 'Blue'))
+      .where('expired_date > ? OR expired_date IS NULL', Date.today)
+      .where('risk_expire_date > ? OR risk_expire_date IS NULL', Date.today)
+      .exists? ? 'x' : ''
+    end
+
+   def formatted_data
+      {
+        first_name: volunteer_first_name,
+        last_name: volunteer_last_name,
+        email: volunteer_email_address,
+        division: get_division_code,
+        safe_haven: get_cert_status("AYSOs Safe Haven"),
+        concussion: get_cert_status("Concussion Awareness"),
+        cardiac: get_cert_status("Sudden Cardiac Arrest"),
+        safesport: get_cert_status("SafeSport"),
+        live_scan: get_cert_status("CA Mandated Fingerprinting"),
+        compliant: is_compliant
+      }
+   end
+    # This method gathers all volunteers' formatted data organized by division code
+  def self.divisional_data
+   # Initialize a hash to store the volunteers' data by division code
+   divisional_data = {}
+
+   # Iterate over all volunteers
+   all.find_each do |volunteer|
+     # Get the division code for the volunteer
+     division_code = volunteer.get_division_code
+
+     # Skip to the next volunteer if division code is nil
+     next unless division_code
+
+     # Add the volunteer's formatted data to the array for their division code
+     divisional_data[division_code] ||= []
+     divisional_data[division_code] << volunteer.formatted_data
+   end
+
+   divisional_data
    end
       
       
