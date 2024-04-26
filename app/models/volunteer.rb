@@ -185,6 +185,28 @@ class Volunteer < ApplicationRecord
       match = division_name.match(/(\d{1,2})U(B|G)/)
       match ? "#{match[1]}U#{match[2]}" : nil
     end
+    def self.convert_division_code(division_code) # converts division_code to number
+      match = division_code.match(/(\d{1,2})U(B|G)/)
+      match ? match[1] : nil  # Just return the numeric part
+    end
+    def self.nearest_compliance_division(division_num)
+      # Return nil if division_num is nil
+      return nil if division_num.nil?
+    
+      # Convert division_num to an integer for comparison
+      rounded_division = division_num.to_i
+      
+      # If division is 19, return it as is
+      return '19' if rounded_division == 19
+      
+      # Round up to the next even number for coach compliance, unless it's already even
+      rounded_division += 1 if rounded_division.odd? && rounded_division != 19
+      
+      # Return the adjusted division number as a string
+      rounded_division.to_s
+    end
+    
+    
 
     def get_role()
       # Cleans roles into Coach and Referee
@@ -192,6 +214,13 @@ class Volunteer < ApplicationRecord
       return 'Referee' if volunteer_role&.include?('Referee')
       nil
    end
+   def get_roles # updated
+      roles = []
+      roles << 'Coach' if volunteer_role&.include?('Coach')
+      roles << 'Referee' if volunteer_role&.include?('Referee')
+      roles
+   end
+    
 
 
    def get_missing_certs
@@ -216,45 +245,70 @@ class Volunteer < ApplicationRecord
       # Return the list of missing certifications
       missing_certs
     end
+    
    def is_compliant
-      division_num = get_division
-      role = get_role
+      division_num = get_division #gets first division
+      role = get_role #gets first role
 
       return false if division_num.nil? || role.nil?
 
       compliance_method = "is_#{division_num}u_#{role.downcase}_compliant?".to_sym
-      if compliance_method
-         return true
+      if self.respond_to?(compliance_method)
+         self.send(compliance_method) # actually call the method if it exists
       else
-         return false
+         false
+      end
+   end
+   def is_compliant_specific(role, division)
+      division_num = division
+      division_num = Volunteer.nearest_compliance_division(division_num)
+      role = role.to_s.downcase
+
+      return false if division_num.nil? || role.nil?
+
+      compliance_method = "is_#{division_num}u_#{role.downcase}_compliant?".to_sym
+      if self.respond_to?(compliance_method)
+         self.send(compliance_method) # actually call the method if it exists
+      else
+         false
       end
    end
 
    #formatting for form
-   def get_cert_status(cert_name)
+   def get_cert_status_exclude_null(cert_name)
       # where(admin_id: association_volunteer_id, verified: true, risk_status: 'Green').or(AdminDetail.where(admin_id: association_volunteer_id, verified: true, risk_status: 'Blue')).where('expired_date > ? OR expired_date IS NULL', Date.today).where('risk_expire_date > ? OR risk_expire_date IS NULL', Date.today).pluck(:cert_name)
 
       #  Checks if admin detail exists for certname and if not expired
       AdminDetail.where(admin_id: association_volunteer_id, cert_name: cert_name, risk_status: 'Green').or(AdminDetail.where(admin_id: association_volunteer_id, verified: true,cert_name: cert_name, risk_status: 'Blue'))
+      .where('expired_date > ?', Date.today)
+      .where('risk_expire_date > ?', Date.today)
+      .exists? ? 'x' : '-'
+    end
+    def get_cert_status(cert_name)
+      # where(admin_id: association_volunteer_id, verified: true, risk_status: 'Green').or(AdminDetail.where(admin_id: association_volunteer_id, verified: true, risk_status: 'Blue')).where('expired_date > ? OR expired_date IS NULL', Date.today).where('risk_expire_date > ? OR risk_expire_date IS NULL', Date.today).pluck(:cert_name)
+
+      #  Checks if admin detail exists for certname and if not expired
+      AdminDetail.where(admin_id: association_volunteer_id, cert_name: cert_name)
       .where('expired_date > ? OR expired_date IS NULL', Date.today)
       .where('risk_expire_date > ? OR risk_expire_date IS NULL', Date.today)
-      .exists? ? 'x' : ''
+      .exists? ? 'x' : '-'
     end
 
-   def formatted_data
+   def formatted_data(division_num, role, division_code)
       {
         first_name: volunteer_first_name,
         last_name: volunteer_last_name,
         email: volunteer_email_address,
-        division: get_division_code,
+        division: division_num,
         safe_haven: get_cert_status("AYSOs Safe Haven"),
         concussion: get_cert_status("Concussion Awareness"),
         cardiac: get_cert_status("Sudden Cardiac Arrest"),
         safesport: get_cert_status("SafeSport"),
         live_scan: get_cert_status("CA Mandated Fingerprinting"),
-        compliant: is_compliant
+        compliant: is_compliant_specific(role, division_num),
+        role: role
       }
-   end
+   end    
     # This method gathers all volunteers' formatted data organized by division code
   def self.divisional_data
    # Initialize a hash to store the volunteers' data by division code
@@ -262,18 +316,18 @@ class Volunteer < ApplicationRecord
 
    # Iterate over all volunteers
    all.find_each do |volunteer|
-     # Get the division code for the volunteer
-     division_code = volunteer.get_division_code
+    volunteer.get_roles.each do |role|
+      division_num = convert_division_code(volunteer.get_division_code)
+      division_code = volunteer.get_division_code
+      next if division_num.nil?
 
-     # Skip to the next volunteer if division code is nil
-     next unless division_code
+      divisional_data[division_code] ||= []
 
-     # Add the volunteer's formatted data to the array for their division code
-     divisional_data[division_code] ||= []
-     divisional_data[division_code] << volunteer.formatted_data
+      divisional_data[division_code] << volunteer.formatted_data(division_num, role, division_code)
+      end
    end
 
-   divisional_data
+      divisional_data
    end
       
       
