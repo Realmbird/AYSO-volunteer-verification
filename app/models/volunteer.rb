@@ -175,7 +175,7 @@ class Volunteer < ApplicationRecord
         division_num = "#{division_age}"
     
         # Return the extracted division code
-        return division_num
+        return division_num 
       else
         # Handle case where division_name does not match expected pattern
         return nil
@@ -260,6 +260,7 @@ class Volunteer < ApplicationRecord
       end
    end
    def is_compliant_specific(role, division)
+      # has_required_license = LicenseDetail.where(admin_id: association_volunteer_id, coaching_license_referee_grade: 'National Referee').exists?
       division_num = division
       division_num = Volunteer.nearest_compliance_division(division_num)
       role = role.to_s.downcase
@@ -295,11 +296,12 @@ class Volunteer < ApplicationRecord
     end
 
    def formatted_data(division_num, role, division_code)
+      # add vol status and coaching_license_referee_grade from license detail
       {
         first_name: volunteer_first_name,
         last_name: volunteer_last_name,
         email: volunteer_email_address,
-        division: division_num,
+        division: division_code,
         safe_haven: get_cert_status("AYSOs Safe Haven"),
         concussion: get_cert_status("Concussion Awareness"),
         cardiac: get_cert_status("Sudden Cardiac Arrest"),
