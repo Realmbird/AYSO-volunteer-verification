@@ -25,8 +25,12 @@
         <%= link_to "Notifications (Experimental)", edit_user_path(current_user) %> |
         <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: "delete" }  %>  
       <% else %>
-        <%= link_to "Sign up", new_user_registration_path %> or
-        <%= link_to "Sign in", new_user_session_path %>
+        <%= image_tag("menu.png") %>
+        <%= link_to "Database", users_path %> |
+        <%= link_to "Find Volunteers", volunteers_path %>
+   
+        <%#= link_to "Sign up", new_user_registration_path %> 
+        <%#= link_to "Sign in", new_user_session_path %>
       <% end %>
     </div>
     <div class = "body">
