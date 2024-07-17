@@ -1,24 +1,9 @@
-# README
+Setup
+1. Need rails, postgres, ruby
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Steps:
+1. rails db:create
+2. rails db:migrate // moves models
+3. rails s
+4. localhost:3000
+5. Use Application
