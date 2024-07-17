@@ -1,4 +1,11 @@
-<%= link_to 'Scrape Volunteer Data', ayso_path %>
+<%= link_to 'Scrape ALL Volunteer Data', selenium_test_path %>
+<br/>
+<h3> Partial Scrapes </h3>
+<ol>
+  <li><%= link_to 'AYSO Sports Connect', ayso_path %></li>
+  <li><%= link_to "AYSO Sports Affinity Reports", compliance_path %></li>
+</ol>
+
 <!-- app/views/volunteers/index.html.erb -->
 <h1>Volunteers Index</h1>
 
@@ -84,9 +91,9 @@
         <td><%= volunteer.volunteer_cellphone %></td>
         <td><%= volunteer.volunteer_other_phone %></td>
         <td><%= volunteer.association_volunteer_id %></td>
-        <td><%#= link_to 'Show', volunteer_path(volunteer) %></td>
-        <td><%#= link_to 'Edit', edit_volunteer_path(volunteer) %></td>
-        <td><%#= link_to 'Destroy', volunteer_path(volunteer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', volunteer_path(volunteer) %></td>
+        <td><%= link_to 'Edit', edit_volunteer_path(volunteer) %></td>
+        <td><%= link_to 'Destroy', volunteer_path(volunteer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
